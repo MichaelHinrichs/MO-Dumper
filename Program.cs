@@ -15,11 +15,11 @@ namespace MO_Dumper
             int unknown = br.ReadInt32();
 
             br.BaseStream.Position = tableStart;
-            List<String> strings = new();
+            System.Collections.Generic.List<String> strings = new();
             for (int i = 0; i < count; i++)
                 strings.Add(new());
 
-            BinaryWriter bw = File.Create(Path.GetDirectoryName(args[0]) + "\\" + Path.GetFileNameWithoutExtension(args[0]) + ".txt")
+            BinaryWriter bw = new(File.Create(Path.GetDirectoryName(args[0]) + "\\" + Path.GetFileNameWithoutExtension(args[0]) + ".txt"));
             foreach (String text in strings)
             {
                 br.BaseStream.Position = text.start;
