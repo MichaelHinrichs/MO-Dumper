@@ -11,11 +11,13 @@ namespace MO_Dumper
             br = new(File.OpenRead(args[0]));
             int magic = br.ReadInt32();//2500072158
             int revision = br.ReadInt32();
-            int stringCount = br.ReadInt32() * 2;
-            int tableStart = br.ReadInt32();
-            int	TranslationStringTableOffset = br.ReadInt32();
+            int stringCount = br.ReadInt32();
+            int originalTableStart = br.ReadInt32();
+            int	TranslationStringTableStart = br.ReadInt32();
             int	HashTableSize = br.ReadInt32();
-            int	HashTableOffset = br.ReadInt32();
+            int	HashTableStart = br.ReadInt32();
+            int	Unknown = br.ReadInt32();
+
 
             br.BaseStream.Position = tableStart;
             System.Collections.Generic.List<String> strings = new();
