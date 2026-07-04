@@ -9,10 +9,13 @@ namespace MO_Dumper
         public static void Main(string[] args)
         {
             br = new(File.OpenRead(args[0]));
-            br.ReadBytes(8);
-            int count = br.ReadInt32() * 16 / 8;
+            int magic = br.ReadInt32();//2500072158
+            int revision = br.ReadInt32();
+            int stringCount = br.ReadInt32() * 2;
             int tableStart = br.ReadInt32();
-            int unknown = br.ReadInt32();
+            int	TranslationStringTableOffset = br.ReadInt32();
+            int	HashTableSize = br.ReadInt32();
+            int	HashTableOffset = br.ReadInt32();
 
             br.BaseStream.Position = tableStart;
             System.Collections.Generic.List<String> strings = new();
